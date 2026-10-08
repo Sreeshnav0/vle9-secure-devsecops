@@ -30,7 +30,7 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
-                sh 'minikube image load vle9-healthcare:1.0'
+                sh 'sudo -u ubuntu minikube image load vle9-healthcare:1.0'
                 sh 'kubectl apply -f deployment.yaml'
                 sh 'kubectl apply -f service.yaml'
             }
