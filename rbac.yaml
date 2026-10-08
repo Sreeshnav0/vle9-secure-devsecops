@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: vle9-healthcare-sa
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: vle9-healthcare-role
+rules:
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: vle9-healthcare-rolebinding
+subjects:
+  - kind: ServiceAccount
+    name: vle9-healthcare-sa
+roleRef:
+  kind: Role
+  name: vle9-healthcare-role
+  apiGroup: rbac.authorization.k8s.io
